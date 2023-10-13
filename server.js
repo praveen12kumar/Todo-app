@@ -6,6 +6,7 @@ import taskRouter from "./backend/routes/taskRoutes.js";
 import cookieParser from "cookie-parser";
 import { errorMiddleware } from "./backend/middlewares/error.js";
 import cors from "cors";
+import helmet from "helmet";
 
 const app = express();
 config()
@@ -24,6 +25,8 @@ app.use(cors({
     methods:['GET', 'POST', 'DELETE', 'PUT'],
     Credential:true
 }));
+
+app.use(helmet());
 
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/tasks', taskRouter);
